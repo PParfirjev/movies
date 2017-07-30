@@ -32,10 +32,14 @@ class Film extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['year'], 'integer'],
-            [['rating'], 'number'],
-            [['name'], 'string', 'max' => 255],
-            [['genre', 'budget', 'release_date'], 'string', 'max' => 128],
+            [['name'], 'string', 'min' => 2, 'max' => 255],
+            [['year'], 'date', 'format' => 'yyyy' /*, 'min' => 0, 'max' => 2017*/ ],
+            [['year'], 'in', 'range'=>range(1900, 2017)],
+            [['rating'], 'number', 'min' => 0, 'max' => 10],
+            [['budget'], 'integer', 'min' => 0],
+            [['genre'], 'string', 'max' => 128],
+            [['release_date'], 'date', 'format' => 'yyyy-MM-dd'],
+            [['year', 'rating', 'budget', 'release_date'], 'default', 'value' => null],
             [['name','year','rating','genre','budget','release_date'], 'trim'],
         ];
     }

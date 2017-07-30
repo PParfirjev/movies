@@ -14,15 +14,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'year')->textInput() ?>
+    <?= $form->field($model, 'year')->widget(\yii\jui\DatePicker::classname(), [
+        //'language' => 'ru',
+        'dateFormat' => 'yyyy',
+    ])
+    ?>
 
     <?= $form->field($model, 'rating')->textInput() ?>
 
     <?= $form->field($model, 'budget')->textInput() ?>
 
-    <?= $form->field($model, 'release_date')->textInput() ?>
+    <?= $form->field($model, 'release_date')->widget(\yii\jui\DatePicker::classname(), [
+        //'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ])
+    ?>
 
-<!--    --><?//= $form->field($model, 'genre')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'genre')->dropDownList(
         ['Военный' => 'Военный',
             'Драма' => 'Драма',
